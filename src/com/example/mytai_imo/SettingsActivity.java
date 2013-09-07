@@ -1,10 +1,15 @@
 package com.example.mytai_imo;
 
 import com.example.mytai_imo.utils.App;
+import com.example.mytai_imo.utils.App.UserData;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TimePicker;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -17,25 +22,46 @@ public class SettingsActivity extends Activity {
 		setContentView(R.layout.activity_settings);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		
-		//UserData userData = App.Settings.getSettings();
-		//↑で設定を読み込んでEditTextにsetTextしていく
+		if(App.Settings.isFirstSettingCompleted()) {
+			UserData userData = App.Settings.getSettings();
+			setUserData(userData);
+		}
 		
 	//	App.SetTransition(R.id.register_button, TodayActivity.class, this);
 		
 		App.SetTransition(R.id.imageButton1, TodayActivity.class, this);
-		/*
-		findViewById(R.id.register_button).setOnClickListener(new View.OnClickListener() {
+		
+		findViewById(R.id.imageButton1).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//設定を取得した後↓を実行する
-				//App.Settings.setSettings(name, age, height, baseWeight, hour, minute);
+				String id = ((EditText)findViewById(R.id.edittext_id)).getText().toString();
+				String name = ((EditText)findViewById(R.id.edittext_name)).getText().toString();
+				Float height = Float.parseFloat(((EditText)findViewById(R.id.edittext_height)).getText().toString());
+				Float baseWeight = Float.parseFloat(((EditText)findViewById(R.id.edittext_base_weight)).getText().toString());
+				
+				TimePicker timePicker = (TimePicker)findViewById(R.id.timePicker);
+				int hour = timePicker.getCurrentHour();
+				int minute = timePicker.getCurrentMinute();
+				
+				App.Settings.setSettings(name, id, height, baseWeight, hour, minute);
+				
+				App.Transition(SettingsActivity.this, TodayActivity.class);
 			}
 		});
-		*/
+		
 	}
 	
-	
+	private void setUserData(UserData userData) {
+		((EditText)findViewById(R.id.edittext_id)).setText(userData.getId());
+		((EditText)findViewById(R.id.edittext_name)).setText(userData.getName());
+		((EditText)findViewById(R.id.edittext_height)).setText(String.valueOf(userData.getHeight()));
+		((EditText)findViewById(R.id.edittext_base_weight)).setText(String.valueOf(userData.getBaseWeight()));
+		
+		TimePicker timePicker = (TimePicker)findViewById(R.id.timePicker);
+		timePicker.setCurrentHour(userData.getTime().first);
+		timePicker.setCurrentMinute(userData.getTime().second);
+	}
 
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
