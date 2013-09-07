@@ -1,5 +1,7 @@
 package com.example.mytai_imo;
 
+import com.example.mytai_imo.utils.App;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,7 +15,6 @@ import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 
 public class TodayActivity extends Activity {
 
@@ -38,8 +39,6 @@ public class TodayActivity extends Activity {
 				// TODO Auto-generated method stub
 				showWeightDialog();
 				
-				
-				
 			}
 		});
 		
@@ -56,16 +55,30 @@ public class TodayActivity extends Activity {
         final NumberPicker numPicker = (NumberPicker)dialog_layout.findViewById(R.id.numPicker);
         numPicker.setMinValue(0);
         numPicker.setMaxValue(9);
+        numPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            int count = (int)App.Settings.getSettings().getBaseWeight();
+			@Override
+			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+				if(oldVal == 9 && newVal == 0) {
+					TextView textView = (TextView) dialog_layout.findViewById(R.id.textView_10);
+					textView.setText(String.valueOf(++count));
+				}
+				if(oldVal == 0 && newVal == 9) {
+					TextView textView = (TextView) dialog_layout.findViewById(R.id.textView_10);
+					textView.setText(String.valueOf(--count));
+				}
+			}
+		});
         
         // アラートダイアログ を生成
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("今日の体重を入力してね");
         builder.setView(dialog_layout);
+        
+        
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener () {
             public void onClick(DialogInterface dialog, int which) {
                 // OK ボタンクリック処理
-            	TextView textView = (TextView) TodayActivity.this.findViewById(R.id.weight_result);
-            	textView.setText(String.valueOf(numPicker.getValue()));
             	//layout.removeView(imageButtonWeight);
             }
         });
@@ -81,14 +94,6 @@ public class TodayActivity extends Activity {
 		return true;
 	}
 
-	
-	
-	
-
-	
-	
-	
-	
 	
 }
 

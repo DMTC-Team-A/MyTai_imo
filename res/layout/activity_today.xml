@@ -9,15 +9,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".TodayActivity" >
 
-                <ImageButton
-                    android:id="@+id/buttonx"
-                    android:layout_width="320dp"
-                    android:layout_height="570dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:background="@null"
-                    android:scaleType="fitEnd"
-                    android:src="@drawable/youkoso" />
+    <ImageButton
+        android:id="@+id/buttonx"
+        android:layout_width="320dp"
+        android:layout_height="570dp"
+        android:background="@null"
+        android:scaleType="fitEnd"
+        android:src="@drawable/youkoso" />
 
                 <ImageButton
                     android:id="@+id/imageButton_weight"
@@ -35,8 +33,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignRight="@+id/imageButton_weight"
                     android:layout_alignTop="@+id/buttonx"
-                    android:layout_marginRight="22dp"
-                    android:layout_marginTop="23dp"
                     android:text="unk" />
 
 </RelativeLayout>
