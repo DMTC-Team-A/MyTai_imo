@@ -79,9 +79,6 @@ public class TodayActivity extends Activity {
 				float result = count + (float)newVal * 0.1f; 
 				((TextView)findViewById(R.id.weight_result)).setText(String.valueOf(result));
 				
-				
-				
-				
 			}
 		});
         
@@ -94,7 +91,8 @@ public class TodayActivity extends Activity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener () {
             public void onClick(DialogInterface dialog, int which) {
                 // OK ボタンクリック処理
-            	//layout.removeView(imageButtonWeight);
+            	layout.removeView(TodayActivity.this.findViewById(R.id.imageButton_weight));
+            	
             }
         });
 

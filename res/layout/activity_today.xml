@@ -7,15 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/today"
     tools:context=".TodayActivity" >
-
-    <ImageButton
-        android:id="@+id/buttonx"
-        android:layout_width="320dp"
-        android:layout_height="570dp"
-        android:background="@null"
-        android:scaleType="fitEnd"
-        android:src="@drawable/youkoso" />
 
                 <ImageButton
                     android:id="@+id/imageButton_weight"
@@ -34,5 +27,15 @@
                     android:layout_alignRight="@+id/imageButton_weight"
                     android:layout_alignTop="@+id/buttonx"
                     android:text="unk" />
+
+                <ImageButton
+                    android:id="@+id/buttonx"
+                    android:layout_width="320dp"
+                    android:layout_height="380dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@null"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/youkoso" />
 
 </RelativeLayout>
