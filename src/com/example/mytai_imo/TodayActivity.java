@@ -1,6 +1,7 @@
 package com.example.mytai_imo;
 
 import com.example.mytai_imo.utils.App;
+import com.example.mytai_imo.utils.Graph;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -23,6 +24,9 @@ public class TodayActivity extends Activity {
 		this.getActionBar().hide();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_today);
+		
+		RelativeLayout graphLayout = (RelativeLayout) findViewById(R.id.graphLayout);
+		graphLayout.addView(Graph.getGraphView(this));
 		
 		final RelativeLayout layout = (RelativeLayout) findViewById(R.id.RelativeLayout);
 		findViewById(R.id.buttonx).setOnClickListener(new View.OnClickListener() {

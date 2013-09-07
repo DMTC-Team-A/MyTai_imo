@@ -10,6 +10,12 @@
     android:background="@drawable/today"
     tools:context=".TodayActivity" >
 
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:id="@+id/graphLayout" >
+    </RelativeLayout>
+
                 <ImageButton
                     android:id="@+id/imageButton_weight"
                     android:layout_width="220dp"
