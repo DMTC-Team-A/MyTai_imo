@@ -64,14 +64,15 @@ public class App {
 
     public static class UserData {
         private String name;
-        private int age;
+        private String id;
         private float height;
         private float baseWeight;
         private Pair<Integer, Integer> time;
 
-        public UserData(String name, int age, float height, float baseWeight, int hour, int minute) {
+        public UserData(String name, String id, float height,
+        		float baseWeight, int hour, int minute) {
             this.name = name;
-            this.age = age;
+            this.id = id;
             this.height = height;
             this.baseWeight = baseWeight;
             this.time = Pair.create(hour, minute);
@@ -81,8 +82,8 @@ public class App {
             return name;
         }
 
-        public int getAge() {
-            return age;
+        public String getString() {
+            return id;
         }
 
         public float getHeight() {
@@ -100,11 +101,12 @@ public class App {
 
     public static class Settings {
         private static final String PREF_NAME = "Name";
-        private static final String PREF_AGE = "Age";
+        private static final String PREF_ID = "Id";
         private static final String PREF_HEIGHT = "Height";
         private static final String PREF_BASE_WIDTH = "BaseWidth";
         private static final String PREF_HOUR = "Hour";
         private static final String PREF_MINUTE = "Minute";
+        private static final String PREF_FIRST_SETTING_COMPLETED = "FirstSettingCompleted";
 
         private SharedPreferences prefs;
 
@@ -112,27 +114,32 @@ public class App {
             prefs = PreferenceManager.getDefaultSharedPreferences(context);
         }
 
-        public void setSettings(String name, int age, float height, float baseWeight, int hour, int minute) {
+        public void setSettings(String name, String id, float height, float baseWeight, int hour, int minute) {
             SharedPreferences.Editor editor = prefs.edit();
 
             editor.putString(PREF_NAME, name);
-            editor.putInt(PREF_AGE, age);
+            editor.putString(PREF_ID, id);
             editor.putFloat(PREF_HEIGHT, height);
             editor.putFloat(PREF_BASE_WIDTH, baseWeight);
             editor.putInt(PREF_HOUR, hour);
             editor.putInt(PREF_MINUTE, minute);
+            editor.putBoolean(PREF_FIRST_SETTING_COMPLETED, true);
             editor.commit();
         }
 
         public UserData getSettings() {
             return new UserData(
                     prefs.getString(PREF_NAME, ""),
-                    prefs.getInt(PREF_AGE, -1),
+                    prefs.getString(PREF_ID, ""),
                     prefs.getFloat(PREF_HEIGHT, -1),
                     prefs.getFloat(PREF_BASE_WIDTH, -1),
                     prefs.getInt(PREF_HOUR, -1),
                     prefs.getInt(PREF_MINUTE, -1)
             );
+        }
+        
+        public boolean isFirstSettingCompleted() {
+        	return prefs.getBoolean(PREF_FIRST_SETTING_COMPLETED, false);
         }
     }
 }
