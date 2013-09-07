@@ -2,9 +2,18 @@ package com.example.mytai_imo;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 
 public class TodayActivity extends Activity {
 
@@ -21,6 +30,48 @@ public class TodayActivity extends Activity {
 				layout.removeView(TodayActivity.this.findViewById(R.id.buttonx));
 			}
 		});
+		
+		findViewById(R.id.imageButton_weight).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				showWeightDialog();
+				
+				
+				
+			}
+		});
+		
+	}
+	
+	private void showWeightDialog() {
+		final RelativeLayout layout = (RelativeLayout) findViewById(R.id.RelativeLayout);
+		
+		// カスタムビューを設定
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(
+        				LAYOUT_INFLATER_SERVICE);
+        final View dialog_layout = inflater.inflate(R.layout.weight_dialog,
+        			(ViewGroup)findViewById(R.id.layout_root));
+        final NumberPicker numPicker = (NumberPicker)dialog_layout.findViewById(R.id.numPicker);
+        numPicker.setMinValue(0);
+        numPicker.setMaxValue(9);
+        
+        // アラートダイアログ を生成
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("今日の体重を入力してね");
+        builder.setView(dialog_layout);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener () {
+            public void onClick(DialogInterface dialog, int which) {
+                // OK ボタンクリック処理
+            	TextView textView = (TextView) TodayActivity.this.findViewById(R.id.weight_result);
+            	textView.setText(String.valueOf(numPicker.getValue()));
+            	//layout.removeView(imageButtonWeight);
+            }
+        });
+
+        // 表示
+        builder.create().show();
 	}
 
 	@Override
@@ -30,4 +81,14 @@ public class TodayActivity extends Activity {
 		return true;
 	}
 
+	
+	
+	
+
+	
+	
+	
+	
+	
 }
+

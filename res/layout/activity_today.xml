@@ -19,4 +19,24 @@
                     android:scaleType="fitEnd"
                     android:src="@drawable/youkoso" />
 
+                <ImageButton
+                    android:id="@+id/imageButton_weight"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@null"
+                    android:scaleType="fitStart"
+                    android:src="@drawable/taiju" />
+
+                <TextView
+                    android:id="@+id/weight_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/imageButton_weight"
+                    android:layout_alignTop="@+id/buttonx"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="23dp"
+                    android:text="unk" />
+
 </RelativeLayout>
