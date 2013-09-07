@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -133,8 +134,42 @@ public class TodayActivity extends Activity {
                 // OK ボタンクリック処理
             	layout.removeView(TodayActivity.this.findViewById(R.id.imageButton_weight));
             	
+            	
+            	float kyounotaijuu = 88.8f;
+            	  float TAIJU = 70.0F;
+            	  float SINTYOU = 170.0F;
+            	  float fBMI;
+            	  int  BMI;
+            	  TextView colorEdit = (TextView)findViewById(R.id.textView2);
+            	  colorEdit.setTextColor(kyounotaijuu < 80 ? Color.BLUE : Color.RED);
+            	  ((TextView)findViewById(R.id.textView2)).setText(String.valueOf(kyounotaijuu));
+            	  
+            	   fBMI = TAIJU / SINTYOU / SINTYOU * 10000 ;
+            	   BMI = (int)fBMI;
+            	  TextView colorEdit2 = (TextView)findViewById(R.id.textView0);
+            	  colorEdit2.setTextColor(20 < BMI && BMI < 24 ? Color.BLUE : (BMI < 20 ? Color.YELLOW : Color.RED));
+            	  ((TextView)findViewById(R.id.textView0)).setText(String.valueOf(BMI));
+
+            
+            	  
+            	  if(20<=BMI && BMI<=24){
+            	   ((TextView)findViewById(R.id.textView4)).setText("適正体重です。");
+            	  }else{
+            	   if(BMI<20){
+            	    ((TextView)findViewById(R.id.textView4)).setText("やせ型です！");
+            	   }else{
+            	    ((TextView)findViewById(R.id.textView4)).setText("肥満です！");
+            	   }
+            	  }
+            	  
+            	  ((TextView)findViewById(R.id.textView5)).setText("昨日との差は"+ BMI);
+            	  
+            	  
+            	  
+
             }
         });
+        
 
         // 表示
         builder.create().show();

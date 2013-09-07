@@ -70,6 +70,12 @@
             android:layout_height="wrap_content" >
 
             <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
                 android:id="@+id/textView0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -88,20 +94,14 @@
         </TableRow>
     </TableLayout>
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
- 
                 <ImageButton
                     android:id="@+id/imageButton_weight"
-                    android:layout_width="220dp"
-                    android:layout_height="220dp"
+                    android:layout_width="280dp"
+                    android:layout_height="280dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:background="@null"
-                    android:scaleType="fitStart"
+                    android:scaleType="fitEnd"
                     android:src="@drawable/taiju" />
 
                 <ImageButton
@@ -109,11 +109,12 @@
                     android:layout_width="400dp"
                     android:layout_height="500dp"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
+                    android:layout_alignRight="@+id/graphLayout"
+                    android:layout_marginTop="23dp"
                     android:background="@null"
                     android:scaleType="fitEnd"
-                    android:visibility="invisible"
-                    android:src="@drawable/welcome" />
+                    android:src="@drawable/welcome"
+                    android:visibility="invisible" />
 
 </RelativeLayout>
 

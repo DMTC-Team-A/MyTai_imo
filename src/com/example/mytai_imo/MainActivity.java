@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
 		this.getActionBar().hide();
 		
 		if(App.Settings.isFirstSettingCompleted()) {
-			App.Transition(this, TodayActivity.class);
+			//App.Transition(this, TodayActivity.class);
 		}
 		
 		super.onCreate(savedInstanceState);
