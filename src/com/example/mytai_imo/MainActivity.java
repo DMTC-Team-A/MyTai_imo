@@ -15,6 +15,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		App.Initialize(this);
+		this.getActionBar().hide();
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -22,13 +23,5 @@ public class MainActivity extends Activity {
 		App.SetTransition(R.id.start_button, SettingsActivity.class,this);
 
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
 
 }
