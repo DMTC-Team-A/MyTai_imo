@@ -82,7 +82,7 @@ public class App {
             return name;
         }
 
-        public String getString() {
+        public String getId() {
             return id;
         }
 
