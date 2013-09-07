@@ -81,7 +81,7 @@ public class TodayActivity extends Activity {
 				}
 				
 				float result = count + (float)newVal * 0.1f; 
-				((TextView)findViewById(R.id.weight_result)).setText(String.valueOf(result));
+				//((TextView)findViewById(R.id.weight_result)).setText(String.valueOf(result));
 				
 			}
 		});
