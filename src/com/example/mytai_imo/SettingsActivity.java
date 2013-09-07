@@ -18,6 +18,7 @@ public class SettingsActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		this.getActionBar().hide();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 		// Show the Up button in the action bar.

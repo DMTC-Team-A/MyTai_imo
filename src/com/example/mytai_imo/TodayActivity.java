@@ -20,6 +20,7 @@ public class TodayActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		this.getActionBar().hide();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_today);
 		
