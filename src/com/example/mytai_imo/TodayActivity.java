@@ -46,15 +46,22 @@ public class TodayActivity extends Activity {
 	
 	private void showWeightDialog() {
 		final RelativeLayout layout = (RelativeLayout) findViewById(R.id.RelativeLayout);
-		
+
+		float baseWeight = App.Settings.getSettings().getBaseWeight();
 		// カスタムビューを設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(
         				LAYOUT_INFLATER_SERVICE);
         final View dialog_layout = inflater.inflate(R.layout.weight_dialog,
         			(ViewGroup)findViewById(R.id.layout_root));
+        
+        TextView hutaketa_text = (TextView) dialog_layout.findViewById(R.id.textView_10);
+        int hutaketa = (int)baseWeight;
+        hutaketa_text.setText(String.valueOf(hutaketa));
         final NumberPicker numPicker = (NumberPicker)dialog_layout.findViewById(R.id.numPicker);
         numPicker.setMinValue(0);
         numPicker.setMaxValue(9);
+        int shosuDaiItii = (int)((baseWeight - hutaketa) * 10);
+        numPicker.setValue(shosuDaiItii);
         numPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             int count = (int)App.Settings.getSettings().getBaseWeight();
 			@Override

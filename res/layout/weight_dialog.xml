@@ -36,6 +36,7 @@
         android:layout_alignBottom="@+id/textView_kg"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="72dp"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
