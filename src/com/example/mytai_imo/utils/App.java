@@ -1,5 +1,7 @@
 package com.example.mytai_imo.utils;
 
+import java.util.Calendar;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -51,6 +53,25 @@ public class App {
         }
     }
     //endregion
+    
+    /**
+     * 指定したCalendarの日付の0時00分00.0秒時のミリ秒を取得する
+     * @param calendar
+     * @return
+     */
+    public static long getMinimumTime(Calendar calendar) {
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        return calendar.getTimeInMillis();
+    }
+
+    public static long getMaximumTime(Calendar calendar) {
+        calendar.add(Calendar.DATE, 1);
+        return getMinimumTime(calendar) - 1;
+    }
 
     public static Settings Settings;
 
