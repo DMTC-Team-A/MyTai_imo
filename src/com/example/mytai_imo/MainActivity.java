@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		App.SetTransition(R.id.start_button, SettingsActivity.class, this);
+		App.SetTransition(R.id.start_button, SettingsActivity.class,this);
 
 	}
 

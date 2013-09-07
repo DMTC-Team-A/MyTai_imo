@@ -2,9 +2,11 @@ package com.example.mytai_imo;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class TodayActivity extends Activity {
 
@@ -22,6 +24,7 @@ public class TodayActivity extends Activity {
 				layout.removeView(TodayActivity.this.findViewById(R.id.buttonx));
 			}
 		});
+
 	}
 
 	@Override
