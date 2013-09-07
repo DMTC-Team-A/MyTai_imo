@@ -39,7 +39,10 @@
             android:name="com.example.mytai_imo.TodayActivity"
             android:label="@string/title_activity_today" >
         </activity>
-        
+        <activity
+            android:name="com.example.mytai_imo.AnalysisActivity"
+            android:label="@string/title_activity_analysis" >
+        </activity>
     </application>
 
 </manifest>

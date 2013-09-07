@@ -15,5 +15,7 @@
     <string name="height_label_text">身長</string>
     <string name="time_label_text">体重を計る時間</string>
     <string name="imageview_content_description">アプリの説明文章が書かれた画像</string>
+    <string name="title_activity_analysis">AnalysisActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
