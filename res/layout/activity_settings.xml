@@ -112,13 +112,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
 
-                <EditText
-                    android:id="@+id/edittext_base_weight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="numberDecimal" />
-
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="wrap_content"
@@ -126,6 +119,16 @@
                     android:layout_alignRight="@+id/edittext_base_weight"
                     android:layout_centerVertical="true"
                     android:text=" kg" />
+
+                <EditText
+                    android:id="@+id/edittext_base_weight"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="33dp"
+                    android:ems="10"
+                    android:inputType="numberDecimal" />
 
             </RelativeLayout>
 
@@ -149,13 +152,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp" />
 
-    <Button
-        android:id="@+id/register_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="120dp"
+        android:layout_height="75dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="22dp"
-        android:text="@string/register_button_text" />
+        android:background="@null"
+        android:scaleType="fitEnd"
+        android:src="@drawable/touroku" />
 
 </RelativeLayout>

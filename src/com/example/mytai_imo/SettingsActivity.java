@@ -21,7 +21,9 @@ public class SettingsActivity extends Activity {
 		//UserData userData = App.Settings.getSettings();
 		//↑で設定を読み込んでEditTextにsetTextしていく
 		
-		App.SetTransition(R.id.register_button, TodayActivity.class, this);
+	//	App.SetTransition(R.id.register_button, TodayActivity.class, this);
+		
+		App.SetTransition(R.id.imageButton1, TodayActivity.class, this);
 		/*
 		findViewById(R.id.register_button).setOnClickListener(new View.OnClickListener() {
 			@Override
