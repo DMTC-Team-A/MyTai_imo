@@ -1,5 +1,7 @@
 package com.example.mytai_imo.utils;
 
+import java.util.ArrayList;
+
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.PointStyle;
@@ -16,6 +18,7 @@ import android.view.View;
 public class Graph {
 	public static View getGraphView(Activity thisPage) {
 		Float[] weightDiffs = new Float[]{0f,0.1f,0.3f,-0.1f,0.1f,0.2f,-0.3f};
+		ArrayList<Weight> allData = WeightDatabase.getInstance().getAllWeightData();
 		
 		GraphicalView graphView = LineChartView(thisPage, weightDiffs);
 		graphView.setBackgroundColor(Color.WHITE);
@@ -58,9 +61,10 @@ public class Graph {
         // (4) データ系列　データの設定
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
         XYValueSeries series = new XYValueSeries("");     // データ系列凡例
-        for (int i = 0; i < yDoubleValue.length; i++)
-        {
-            series.add(i, yDoubleValue[i]);
+        int length = yDoubleValue.length;
+        int i = 0;
+        for(double y : yDoubleValue) {
+            series.add(i++, y);
         }
         dataset.addSeries(series);
         

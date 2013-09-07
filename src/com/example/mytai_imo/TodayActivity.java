@@ -2,6 +2,8 @@ package com.example.mytai_imo;
 
 import com.example.mytai_imo.utils.App;
 import com.example.mytai_imo.utils.Graph;
+import com.example.mytai_imo.utils.Weight;
+import com.example.mytai_imo.utils.WeightDatabase;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -86,8 +88,6 @@ public class TodayActivity extends Activity {
 	}
 	
 	private void showWeightDialog() {
-		final RelativeLayout layout = (RelativeLayout) findViewById(R.id.RelativeLayout);
-
 		float baseWeight = App.Settings.getSettings().getBaseWeight();
 		// カスタムビューを設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(
@@ -115,10 +115,6 @@ public class TodayActivity extends Activity {
 					TextView textView = (TextView) dialog_layout.findViewById(R.id.textView_10);
 					textView.setText(String.valueOf(--count));
 				}
-				
-				float result = count + (float)newVal * 0.1f; 
-				//((TextView)findViewById(R.id.weight_result)).setText(String.valueOf(result));
-				
 			}
 		});
         
@@ -127,12 +123,12 @@ public class TodayActivity extends Activity {
         builder.setTitle("今日の体重を入力してね");
         builder.setView(dialog_layout);
         
-        
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener () {
             public void onClick(DialogInterface dialog, int which) {
                 // OK ボタンクリック処理
-            	layout.removeView(TodayActivity.this.findViewById(R.id.imageButton_weight));
-            	
+            	int count = Integer.parseInt(((TextView)dialog_layout.findViewById(R.id.text_futaketa)).getText().toString());
+				float result = count + (float)numPicker.getValue() * 0.1f;
+				WeightDatabase.getInstance().InsertOrUpdateWeight(new Weight(result));
             }
         });
 
