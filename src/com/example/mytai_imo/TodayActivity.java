@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -17,8 +18,15 @@ import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class TodayActivity extends Activity {
 
+
+public class TodayActivity extends Activity {
+	float kyounotaijuu = 88.8f;
+	float TAIJU = 70.0F;
+	float SINTYOU = 170.0F;
+	float fBMI;
+	float result;
+	int		BMI;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		this.getActionBar().hide();
@@ -80,9 +88,8 @@ public class TodayActivity extends Activity {
 					textView.setText(String.valueOf(--count));
 				}
 				
-				float result = count + (float)newVal * 0.1f; 
-				((TextView)findViewById(R.id.weight_result)).setText(String.valueOf(result));
-				
+				result = count + (float)newVal * 0.1f; 
+				//((TextView)findViewById(R.id.weight_result)).setText(String.valueOf(result));
 			}
 		});
         
@@ -90,13 +97,36 @@ public class TodayActivity extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("今日の体重を入力してね");
         builder.setView(dialog_layout);
-        
-        
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener () {
             public void onClick(DialogInterface dialog, int which) {
                 // OK ボタンクリック処理
             	layout.removeView(TodayActivity.this.findViewById(R.id.imageButton_weight));
             	
+            	TAIJU = result;
+
+            	 fBMI = TAIJU / SINTYOU / SINTYOU * 10000 ;
+        		 BMI = (int)fBMI;
+        		TextView colorEdit2 = (TextView)findViewById(R.id.textView0);
+        		colorEdit2.setTextColor(20 < BMI && BMI < 24 ? Color.BLUE : (BMI < 20 ? Color.YELLOW : Color.RED));
+        		((TextView)findViewById(R.id.textView2)).setText(String.valueOf(TAIJU));
+        		((TextView)findViewById(R.id.textView0)).setText(String.valueOf(BMI));
+        		
+        		if(20<=BMI && BMI<=24){
+        			((TextView)findViewById(R.id.textView4)).setText("適正体重です。");
+        		}else{
+        			if(BMI<20){
+        				((TextView)findViewById(R.id.textView4)).setText("やせ型です！");
+        			}else{
+        				((TextView)findViewById(R.id.textView4)).setText("肥満です！");
+        			}
+        		}
+        		
+        		((TextView)findViewById(R.id.textView5)).setText("前回との差は"+ BMI);
+        		
+        	
+        		
+        		
+        		//20 < BMI && (BMI < 24) ? ((TextView)findViewById(R.id.textView4)).setText("適正体重です。") : (BMI<20 ? ((TextView)findViewById(R.id.textView4)).setText("やせ型です！") : ((TextView)findViewById(R.id.textView4)).setText("肥満です！")
             }
         });
 
