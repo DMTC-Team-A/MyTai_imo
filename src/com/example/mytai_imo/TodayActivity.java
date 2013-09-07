@@ -18,7 +18,6 @@ public class TodayActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				layout.removeView(TodayActivity.this.findViewById(R.id.imageView1));
 				layout.removeView(TodayActivity.this.findViewById(R.id.buttonx));
 			}
 		});
