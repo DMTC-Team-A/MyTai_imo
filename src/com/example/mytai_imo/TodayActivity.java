@@ -1,5 +1,9 @@
 package com.example.mytai_imo;
 
+import com.echo.holographlibrary.Line;
+import com.echo.holographlibrary.LineGraph;
+import com.echo.holographlibrary.LinePoint;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -13,6 +17,8 @@ public class TodayActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_today);
 		
+		setGraphData();
+		
 		final RelativeLayout layout = (RelativeLayout) findViewById(R.id.RelativeLayout);
 		findViewById(R.id.buttonx).setOnClickListener(new View.OnClickListener() {
 			
@@ -22,6 +28,23 @@ public class TodayActivity extends Activity {
 				layout.removeView(TodayActivity.this.findViewById(R.id.buttonx));
 			}
 		});
+		
+	}
+	
+	private void setGraphData() {
+		LineGraph graph = (LineGraph)findViewById(R.id.graph);
+		graph.setRangeY(-1, 1);
+		
+		Line line = new Line();
+		int x = 0;
+		for(float y : new float[]{0,-0.3f,0.6f,-0.1f,-0.3f,-0.6f}) {
+			LinePoint p = new LinePoint();
+			p.setX(x++);
+			p.setY(y);
+			line.addPoint(p);
+		}
+		
+		graph.addLine(line);
 	}
 
 	@Override
