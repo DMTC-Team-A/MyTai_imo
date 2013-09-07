@@ -9,7 +9,7 @@
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="title_activity_today">TodayActivity</string>
     <string name="id_label_text">ID</string>
-    <string name="name_label_text">name</string>
+    <string name="name_label_text">名前</string>
     <string name="small_button_text">X</string>
     <string name="base_weight_label_text">基本体重</string>
     <string name="height_label_text">身長</string>
