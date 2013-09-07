@@ -26,7 +26,7 @@ public class Graph {
     {
         // (2) グラフのタイトル、X軸Y軸ラベル、色等の設定
         XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
-        renderer.setChartTitle("あなたのグラフ");     // グラフタイトル
+        renderer.setChartTitle("");     // グラフタイトル
         renderer.setChartTitleTextSize(24);             //
         renderer.setXTitle("日付");                     // X軸タイトル
         renderer.setAxisTitleTextSize(16);              // 
@@ -46,7 +46,7 @@ public class Graph {
         // グリッド色
         renderer.setGridColor(Color.parseColor("#00FFFF")); // グリッドカラーaqua
         // グラフ描画領域マージン top, left, bottom, right
-        renderer.setMargins(new int[] { 28, 0, 0, 0 });  // 
+        renderer.setMargins(new int[] { 0, 0, 0, 0 });  // 
 
         // (3) データ系列の色、マーク等の設定
         XYSeriesRenderer r = new XYSeriesRenderer();
