@@ -30,6 +30,14 @@ public class WeightDatabase {
     public static WeightDatabase getInstance() {
         return ourInstance;
     }
+    
+    public void ResetDatabase() {
+    	
+    }
+    
+    public void InputTestData() {
+    	
+    }
 
     private static ContentValues toContentValues(final Weight weight) {
         ContentValues values = new ContentValues(2);

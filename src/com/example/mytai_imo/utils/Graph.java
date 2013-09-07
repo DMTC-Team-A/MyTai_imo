@@ -18,7 +18,7 @@ import android.view.View;
 public class Graph {
 	public static View getGraphView(Activity thisPage) {
 		Float[] weightDiffs = new Float[]{0f,0.1f,0.3f,-0.1f,0.1f,0.2f,-0.3f};
-		ArrayList<Weight> allData = WeightDatabase.getInstance().getAllWeightData();
+		//ArrayList<Weight> allData = WeightDatabase.getInstance().getAllWeightData();
 		
 		GraphicalView graphView = LineChartView(thisPage, weightDiffs);
 		graphView.setBackgroundColor(Color.WHITE);
@@ -64,7 +64,7 @@ public class Graph {
         int length = yDoubleValue.length;
         int i = 0;
         for(double y : yDoubleValue) {
-            series.add(i++, y);
+            series.add(i++ - length + 6, y);
         }
         dataset.addSeries(series);
         
