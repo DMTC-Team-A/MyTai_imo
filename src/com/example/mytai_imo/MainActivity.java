@@ -17,6 +17,10 @@ public class MainActivity extends Activity {
 		App.Initialize(this);
 		this.getActionBar().hide();
 		
+		if(App.Settings.isFirstSettingCompleted()) {
+			App.Transition(this, TodayActivity.class);
+		}
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		

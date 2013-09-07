@@ -11,6 +11,10 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
@@ -25,17 +29,10 @@ public class TodayActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_today);
 		
+		WelcomeAnimationStart();
+		
 		RelativeLayout graphLayout = (RelativeLayout) findViewById(R.id.graphLayout);
 		graphLayout.addView(Graph.getGraphView(this));
-		
-		final RelativeLayout layout = (RelativeLayout) findViewById(R.id.RelativeLayout);
-		findViewById(R.id.buttonx).setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				layout.removeView(TodayActivity.this.findViewById(R.id.buttonx));
-			}
-		});
 		
 		findViewById(R.id.imageButton_weight).setOnClickListener(new View.OnClickListener() {
 			
@@ -47,6 +44,45 @@ public class TodayActivity extends Activity {
 			}
 		});
 		
+	}
+	
+	private void WelcomeAnimationStart() {
+		final RelativeLayout layout = (RelativeLayout) findViewById(R.id.RelativeLayout);
+		final ImageButton welcomeButton = (ImageButton) findViewById(R.id.buttonx);
+		
+		welcomeButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				FadeOutWelcome(welcomeButton);
+			}
+		});
+
+		AnimationSet animationSet = new AnimationSet(true){{
+			addAnimation(new AlphaAnimation(0, 1){{ setDuration(1000); }});
+			addAnimation(new ScaleAnimation(0.5f, 1, 0.5f, 1) {{ setDuration(1000); }});
+		}};
+		welcomeButton.startAnimation(animationSet);
+		welcomeButton.setVisibility(View.VISIBLE);
+	}
+	
+	private void FadeOutWelcome(final ImageButton welcomeButton) {
+		AnimationSet animationSet = new AnimationSet(true){{
+			addAnimation(new AlphaAnimation(1, 0){{ setDuration(1000); }});
+			addAnimation(new ScaleAnimation(1, 0.5f, 1, 0.5f) {{ setDuration(1000); }});
+		}};
+		animationSet.setAnimationListener(new Animation.AnimationListener() {
+			@Override
+			public void onAnimationStart(Animation animation) {}
+			@Override
+			public void onAnimationRepeat(Animation animation) {}
+			
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				((ViewGroup)welcomeButton.getParent()).removeView(welcomeButton);
+			}
+		});
+		welcomeButton.startAnimation(animationSet);
+		welcomeButton.setVisibility(View.VISIBLE);
 	}
 	
 	private void showWeightDialog() {
