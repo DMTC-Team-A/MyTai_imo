@@ -13,6 +13,8 @@
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="14dp"
         android:id="@+id/graphLayout" >
     </RelativeLayout>
 
@@ -22,7 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageButton_weight"
         android:layout_alignTop="@+id/imageButton_weight"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="380dp"
+        android:layout_marginLeft="40dp"
         android:columnCount="1" >
 
         <TableRow
@@ -102,13 +105,13 @@
 
                 <ImageButton
                     android:id="@+id/buttonx"
-                    android:layout_width="320dp"
-                    android:layout_height="380dp"
+                    android:layout_width="400dp"
+                    android:layout_height="500dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:background="@null"
                     android:scaleType="fitEnd"
-                    android:src="@drawable/youkoso" />
+                    android:src="@drawable/welcome" />
 
 </RelativeLayout>
 

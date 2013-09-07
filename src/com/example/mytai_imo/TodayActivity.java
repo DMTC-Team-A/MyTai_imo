@@ -87,7 +87,7 @@ public class TodayActivity extends Activity {
 					TextView textView = (TextView) dialog_layout.findViewById(R.id.textView_10);
 					textView.setText(String.valueOf(--count));
 				}
-				
+
 				result = count + (float)newVal * 0.1f; 
 				//((TextView)findViewById(R.id.weight_result)).setText(String.valueOf(result));
 			}
