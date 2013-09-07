@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">MyTai_imo</string>
+    <string name="app_name">まいたい</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="start_button_text">はじめる!!</string>
+    <string name="title_activity_settings">設定</string>
+    <string name="register_button_text">登録</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_activity_today">TodayActivity</string>
+    <string name="id_label_text">ID</string>
+    <string name="name_label_text">name</string>
+    <string name="small_button_text">X</string>
+    <string name="base_weight_label_text">基本体重</string>
+    <string name="height_label_text">身長</string>
+    <string name="time_label_text">体重を計る時間</string>
+    <string name="imageview_content_description">アプリの説明文章が書かれた画像</string>
 
 </resources>
