@@ -2,12 +2,13 @@ package com.example.mytai_imo;
 
 import com.example.mytai_imo.utils.App;
 import com.example.mytai_imo.utils.Graph;
+import com.example.mytai_imo.utils.Weight;
+import com.example.mytai_imo.utils.WeightDatabase;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -87,8 +88,6 @@ public class TodayActivity extends Activity {
 	}
 	
 	private void showWeightDialog() {
-		final RelativeLayout layout = (RelativeLayout) findViewById(R.id.RelativeLayout);
-
 		float baseWeight = App.Settings.getSettings().getBaseWeight();
 		// カスタムビューを設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(
@@ -96,7 +95,7 @@ public class TodayActivity extends Activity {
         final View dialog_layout = inflater.inflate(R.layout.weight_dialog,
         			(ViewGroup)findViewById(R.id.layout_root));
         
-        TextView hutaketa_text = (TextView) dialog_layout.findViewById(R.id.textView_10);
+        TextView hutaketa_text = (TextView) dialog_layout.findViewById(R.id.text_futaketa);
         int hutaketa = (int)baseWeight;
         hutaketa_text.setText(String.valueOf(hutaketa));
         final NumberPicker numPicker = (NumberPicker)dialog_layout.findViewById(R.id.numPicker);
@@ -109,17 +108,13 @@ public class TodayActivity extends Activity {
 			@Override
 			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 				if(oldVal == 9 && newVal == 0) {
-					TextView textView = (TextView) dialog_layout.findViewById(R.id.textView_10);
+					TextView textView = (TextView) dialog_layout.findViewById(R.id.text_futaketa);
 					textView.setText(String.valueOf(++count));
 				}
 				if(oldVal == 0 && newVal == 9) {
-					TextView textView = (TextView) dialog_layout.findViewById(R.id.textView_10);
+					TextView textView = (TextView) dialog_layout.findViewById(R.id.text_futaketa);
 					textView.setText(String.valueOf(--count));
 				}
-				
-				float result = count + (float)newVal * 0.1f; 
-				//((TextView)findViewById(R.id.weight_result)).setText(String.valueOf(result));
-				
 			}
 		});
         
@@ -128,48 +123,17 @@ public class TodayActivity extends Activity {
         builder.setTitle("今日の体重を入力してね");
         builder.setView(dialog_layout);
         
-        
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener () {
             public void onClick(DialogInterface dialog, int which) {
                 // OK ボタンクリック処理
-            	layout.removeView(TodayActivity.this.findViewById(R.id.imageButton_weight));
+            	//int count = Integer.parseInt(((TextView)dialog_layout.findViewById(R.id.text_futaketa)).getText().toString());
+				//float result = count + (float)numPicker.getValue() * 0.1f;
+				//WeightDatabase.getInstance().InsertOrUpdateWeight(new Weight(result));
             	
-            	
-            	float kyounotaijuu = 88.8f;
-            	  float TAIJU = 70.0F;
-            	  float SINTYOU = 170.0F;
-            	  float fBMI;
-            	  int  BMI;
-            	  TextView colorEdit = (TextView)findViewById(R.id.textView2);
-            	  colorEdit.setTextColor(kyounotaijuu < 80 ? Color.BLUE : Color.RED);
-            	  ((TextView)findViewById(R.id.textView2)).setText(String.valueOf(kyounotaijuu));
-            	  
-            	   fBMI = TAIJU / SINTYOU / SINTYOU * 10000 ;
-            	   BMI = (int)fBMI;
-            	  TextView colorEdit2 = (TextView)findViewById(R.id.textView0);
-            	  colorEdit2.setTextColor(20 < BMI && BMI < 24 ? Color.BLUE : (BMI < 20 ? Color.YELLOW : Color.RED));
-            	  ((TextView)findViewById(R.id.textView0)).setText(String.valueOf(BMI));
-
-            
-            	  
-            	  if(20<=BMI && BMI<=24){
-            	   ((TextView)findViewById(R.id.textView4)).setText("適正体重です。");
-            	  }else{
-            	   if(BMI<20){
-            	    ((TextView)findViewById(R.id.textView4)).setText("やせ型です！");
-            	   }else{
-            	    ((TextView)findViewById(R.id.textView4)).setText("肥満です！");
-            	   }
-            	  }
-            	  
-            	  ((TextView)findViewById(R.id.textView5)).setText("昨日との差は"+ BMI);
-            	  
-            	  
-            	  
-
+            	//((ViewGroup)imageButton_weight.getParent()).removeView(imageButton_weight);
+				
             }
         });
-        
 
         // 表示
         builder.create().show();

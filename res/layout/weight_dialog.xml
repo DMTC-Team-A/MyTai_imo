@@ -29,7 +29,7 @@
         android:gravity="center" />
 
     <TextView
-        android:id="@+id/textView_10"
+        android:id="@+id/text_futaketa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView_kg"
@@ -43,7 +43,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView_10"
+        android:layout_alignBottom="@+id/text_futaketa"
         android:layout_centerHorizontal="true"
         android:text="."
         android:textAppearance="?android:attr/textAppearanceLarge" />
