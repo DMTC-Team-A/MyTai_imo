@@ -17,12 +17,28 @@ import android.view.View;
 
 public class Graph {
 	public static View getGraphView(Activity thisPage) {
+		/*
 		Float[] weightDiffs = new Float[]{0f,0.1f,0.3f,-0.1f,0.1f,0.2f,-0.3f};
-		//ArrayList<Weight> allData = WeightDatabase.getInstance().getAllWeightData();
+		ArrayList<Weight> allData = WeightDatabase.getInstance().getAllWeightData();
 		
-		GraphicalView graphView = LineChartView(thisPage, weightDiffs);
+		//GraphicalView graphView = LineChartView(thisPage, weightDiffs);
+		Float[] floats = new Float[allData.size()];
+		for(int i = 0; i < allData.size(); i++) {
+			floats[i] = (float)allData.get(i).getWeight();
+		}
+		*/
+		Float[] floats = App.Settings.GetAllData();
+		GraphicalView graphView = LineChartView(thisPage, floats);
 		graphView.setBackgroundColor(Color.WHITE);
 		return graphView;
+	}
+	
+	private static ArrayList<Float> toFloatArray(ArrayList<Weight> weights) {
+		ArrayList<Float> result = new ArrayList<Float>();
+		for(Weight weight : weights) {
+			result.add((float) weight.getWeight());
+		}
+		return result;
 	}
 	
 	private static GraphicalView LineChartView(Activity thisPage, Float[] yDoubleValue) 
@@ -62,9 +78,9 @@ public class Graph {
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
         XYValueSeries series = new XYValueSeries("");     // データ系列凡例
         int length = yDoubleValue.length;
-        int i = 0;
-        for(double y : yDoubleValue) {
-            series.add(i++ - length + 6, y);
+        int count = 1;
+        for(int i = 6; count <= length; i--,count++) {
+            series.add(i, yDoubleValue[length - count]);
         }
         dataset.addSeries(series);
         

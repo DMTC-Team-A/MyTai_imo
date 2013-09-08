@@ -1,6 +1,10 @@
 package com.example.mytai_imo.utils;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 import android.app.Activity;
 import android.content.Context;
@@ -78,6 +82,7 @@ public class App {
     public static void Initialize(Context context) {
         //コンテキストが必要なもの
         App.Settings = new Settings(context);
+        //WeightDatabase.Initialize(context);
     }
 
     private App() {
@@ -161,6 +166,57 @@ public class App {
         
         public boolean isFirstSettingCompleted() {
         	return prefs.getBoolean(PREF_FIRST_SETTING_COMPLETED, false);
+        }
+        
+        public void InputTestData() {
+        	SharedPreferences.Editor editor = prefs.edit();
+        	editor.putStringSet("TestWeightData", new HashSet<String>(){{
+        		add("60");
+        		add("60.2");
+        		add("59.9");
+        		add("59.8");
+        		add("59.7");
+        		add("59.6");
+        		add("59.1");
+        		add("59.2");
+        		add("59.5");
+        		add("59.1");
+        		add("59.3");
+        	}});
+        	editor.commit();
+        }
+        
+        public Float[] GetAllData() {
+        	Set<String> stringSet = prefs.getStringSet("TestWeightData", new HashSet<String>());
+        	
+        	String[] data = new String[stringSet.size()];
+        	stringSet.toArray(data);
+        	float baseWeight = Float.parseFloat(data[data.length - 7]);
+        	
+        	Float[] result = new Float[data.length];
+        	for(int i = 0; i < result.length; i++) {
+        		result[i] = Float.parseFloat(data[i]) - baseWeight;
+        	}
+        	
+        	return result;
+        }
+        
+        public Float GetYesterdayWeight() {
+        	return prefs.getFloat("YesterdayWeight", this.getSettings().baseWeight);
+        }
+        
+        public void AddWeightData(Float weight) {
+        	Set<String> stringSet = prefs.getStringSet("TestWeightData", new TreeSet<String>());
+        	Set<String> newSet = new HashSet<String>();
+        	for(String value : stringSet) {
+        		newSet.add(value);
+        	}
+        	newSet.add(String.valueOf(weight));
+        	
+        	SharedPreferences.Editor editor = prefs.edit();
+        	editor.putStringSet("TestWeightData", newSet);
+        	editor.putFloat("YesterdayWeight", weight);
+        	editor.commit();
         }
     }
 }

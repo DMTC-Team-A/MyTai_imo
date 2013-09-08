@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * 体重の記録を管理するデータベース。
@@ -32,11 +33,27 @@ public class WeightDatabase {
     }
     
     public void ResetDatabase() {
-    	
+    	execTransaction(new ITransaction<Integer>() {
+			@Override
+			public Integer Action(SQLiteDatabase db) {
+				return db.delete(TABLE_NAME, null, null);
+			}
+		});
     }
     
     public void InputTestData() {
+    	double[] doubles = new double[] { 0.1,-0.1,0.1,-0.1,0.1,-0.1,0.1,-0.1,0.1,-0.1,0.1,-0.1 };
     	
+    	Weight[] weights = new Weight[doubles.length];
+    	for(int i = 0; i < doubles.length; i++) {
+    		Calendar today = new GregorianCalendar();
+    		today.add(Calendar.DATE, i);
+    		weights[i] = new Weight(doubles[i], today.getTimeInMillis());
+    	}
+    	
+    	for(Weight weight : weights) {
+    		this.InsertOrUpdateWeight(weight);
+    	}
     }
 
     private static ContentValues toContentValues(final Weight weight) {
@@ -50,8 +67,12 @@ public class WeightDatabase {
         return new Weight(cursor.getDouble(1), cursor.getLong(0));
     }
 
-    public void Initialize(Context context) {
-        helper = new WeightDatabaseHelper(context);
+    public static void Initialize(Context context) {
+    	ourInstance = new WeightDatabase(context);
+    }
+    
+    private WeightDatabase(Context context) {
+    	helper = new WeightDatabaseHelper(context);
     }
 
     /**
@@ -99,7 +120,8 @@ public class WeightDatabase {
         return execTransaction(new ITransaction<Long>() {
             @Override
             public Long Action(SQLiteDatabase db) {
-                return db.insertWithOnConflict(TABLE_NAME, null, toContentValues(weight), SQLiteDatabase.CONFLICT_REPLACE);
+                //return db.insertWithOnConflict(TABLE_NAME, null, toContentValues(weight), SQLiteDatabase.CONFLICT_REPLACE);
+                return db.insert(TABLE_NAME, null, toContentValues(weight));
             }
         });
     }
@@ -138,7 +160,7 @@ public class WeightDatabase {
         return readTransaction(new ITransaction<ArrayList<Weight>>() {
             @Override
             public ArrayList<Weight> Action(SQLiteDatabase db) {
-                Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null, null);
+                Cursor cursor = db.query(TABLE_NAME, COLS, null, null, null, null, null);
                 return toArrayListFromCursor(cursor);
             }
         });

@@ -3,12 +3,14 @@ package com.example.mytai_imo;
 import com.example.mytai_imo.utils.App;
 import com.example.mytai_imo.utils.Graph;
 import com.example.mytai_imo.utils.Weight;
-import com.example.mytai_imo.utils.WeightDatabase;
+//import com.example.mytai_imo.utils.WeightDatabase;
+
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -88,31 +90,31 @@ public class TodayActivity extends Activity {
 	}
 	
 	private void showWeightDialog() {
-		float baseWeight = App.Settings.getSettings().getBaseWeight();
+		final float baseWeight = App.Settings.GetYesterdayWeight();
 		// カスタムビューを設定
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(
         				LAYOUT_INFLATER_SERVICE);
         final View dialog_layout = inflater.inflate(R.layout.weight_dialog,
         			(ViewGroup)findViewById(R.id.layout_root));
         
-        TextView hutaketa_text = (TextView) dialog_layout.findViewById(R.id.textView_10);
+        TextView hutaketa_text = (TextView) dialog_layout.findViewById(R.id.text_futaketa);
         int hutaketa = (int)baseWeight;
         hutaketa_text.setText(String.valueOf(hutaketa));
         final NumberPicker numPicker = (NumberPicker)dialog_layout.findViewById(R.id.numPicker);
         numPicker.setMinValue(0);
         numPicker.setMaxValue(9);
-        int shosuDaiItii = (int)((baseWeight - hutaketa) * 10);
+        int shosuDaiItii = (int)((baseWeight * 10 - hutaketa * 10)) / 10;
         numPicker.setValue(shosuDaiItii);
         numPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             int count = (int)App.Settings.getSettings().getBaseWeight();
 			@Override
 			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 				if(oldVal == 9 && newVal == 0) {
-					TextView textView = (TextView) dialog_layout.findViewById(R.id.textView_10);
+					TextView textView = (TextView) dialog_layout.findViewById(R.id.text_futaketa);
 					textView.setText(String.valueOf(++count));
 				}
 				if(oldVal == 0 && newVal == 9) {
-					TextView textView = (TextView) dialog_layout.findViewById(R.id.textView_10);
+					TextView textView = (TextView) dialog_layout.findViewById(R.id.text_futaketa);
 					textView.setText(String.valueOf(--count));
 				}
 			}
@@ -128,7 +130,8 @@ public class TodayActivity extends Activity {
                 // OK ボタンクリック処理
             	int count = Integer.parseInt(((TextView)dialog_layout.findViewById(R.id.text_futaketa)).getText().toString());
 				float result = count + (float)numPicker.getValue() * 0.1f;
-				WeightDatabase.getInstance().InsertOrUpdateWeight(new Weight(result));
+				//WeightDatabase.getInstance().InsertOrUpdateWeight(new Weight(result));
+				App.Settings.AddWeightData(result);
             }
         });
 
