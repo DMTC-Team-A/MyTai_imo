@@ -126,12 +126,13 @@ public class TodayActivity extends Activity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener () {
             public void onClick(DialogInterface dialog, int which) {
                 // OK ボタンクリック処理
-            	//int count = Integer.parseInt(((TextView)dialog_layout.findViewById(R.id.text_futaketa)).getText().toString());
-				//float result = count + (float)numPicker.getValue() * 0.1f;
-				//WeightDatabase.getInstance().InsertOrUpdateWeight(new Weight(result));
             	
             	//((ViewGroup)imageButton_weight.getParent()).removeView(imageButton_weight);
 				
+            	int count = Integer.parseInt(((TextView)dialog_layout.findViewById(R.id.text_futaketa)).getText().toString());
+				float result = count + (float)numPicker.getValue() * 0.1f;
+				WeightDatabase.getInstance().InsertOrUpdateWeight(new Weight(result));
+
             }
         });
 

@@ -64,7 +64,10 @@ public class Graph {
         int length = yDoubleValue.length;
         int i = 0;
         for(double y : yDoubleValue) {
-            series.add(i++, y);
+        	
+            //series.add(i++, y);
+            series.add(i++ - length + 6, y);
+
         }
         dataset.addSeries(series);
         
